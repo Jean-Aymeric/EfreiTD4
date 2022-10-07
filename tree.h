@@ -5,13 +5,8 @@
 #ifndef TD4_TREE_H
 #define TD4_TREE_H
 #include <stdlib.h>
-
-typedef struct Node {
-    int value;
-    struct Node *left;
-    struct Node *right;
-} Node;
-
+#include "bufferNode.h"
+#include "node.h"
 typedef struct Tree {
     Node *root;
 } Tree;
@@ -33,5 +28,13 @@ int getNbNodesInTree(Tree tree);
 float getAvgFromTree(Tree tree);
 
 int getHeightFromTree(Tree tree);
+
+int countNbOccurrencesInTree(Tree tree, int value);
+
+void displayHorizontallyTree(Tree tree);
+
+void displayPrefixTree(Tree tree);
+void displayInfixTree(Tree tree);
+void displayPostfixTree(Tree tree);
 
 #endif //TD4_TREE_H

@@ -86,7 +86,7 @@ int maxInTree(Tree tree) {
     if (tree.root != NULL) {
         return maxInNode(tree.root);
     } else {
-        return -9999999999999;
+        return -99999999;
     }
 }
 
@@ -143,5 +143,91 @@ int getHeightFromTree(Tree tree) {
         return getHeightFromNode(tree.root);
     } else {
         return 0;
+    }
+}
+
+int countNbOccurrencesInNode(Node *node, int value) {
+    int nbOccurrences = (node->value == value) ? 1 : 0;
+    if (node->left != NULL) {
+        nbOccurrences += countNbOccurrencesInNode(node->left, value);
+    }
+    if (node->right != NULL) {
+        nbOccurrences += countNbOccurrencesInNode(node->right, value);
+    }
+    return nbOccurrences;
+
+}
+
+int countNbOccurrencesInTree(Tree tree, int value) {
+    if (tree.root != NULL) {
+        return countNbOccurrencesInNode(tree.root, value);
+    } else {
+        return 0;
+    }
+}
+
+void displayPrefixNode(Node *node) {
+    printf("%d ", node->value);
+    if (node->left != NULL) {
+        displayPrefixNode(node->left);
+    }
+    if (node->right != NULL) {
+        displayPrefixNode(node->right);
+    }
+}
+
+void displayInfixNode(Node *node) {
+    if (node->left != NULL) {
+        displayInfixNode(node->left);
+    }
+    printf("%d ", node->value);
+    if (node->right != NULL) {
+        displayInfixNode(node->right);
+    }
+}
+
+void displayPostfixNode(Node *node) {
+    if (node->left != NULL) {
+        displayPostfixNode(node->left);
+    }
+    if (node->right != NULL) {
+        displayPostfixNode(node->right);
+    }
+    printf("%d ", node->value);
+}
+
+void displayPrefixTree(Tree tree) {
+    if (tree.root != NULL) {
+        displayPrefixNode(tree.root);
+    }
+    printf("\n");
+}
+
+void displayInfixTree(Tree tree) {
+    if (tree.root != NULL) {
+        displayInfixNode(tree.root);
+    }
+    printf("\n");
+}
+
+void displayPostfixTree(Tree tree) {
+    if (tree.root != NULL) {
+        displayPostfixNode(tree.root);
+    }
+    printf("\n");
+}
+void displayHorizontallyTree(Tree tree){
+    BufferNode* file = createEmptyBufferNode();
+    pushInBufferNode(file,tree.root);
+    while (!isBufferNodeEmpty(file)){
+        Node* temp = popFromBufferNode(file);
+        if (temp->left != NULL) {
+            pushInBufferNode(file,temp->left);
+        }
+        if (temp->right != NULL) {
+            pushInBufferNode(file,temp->right);
+        }
+        printf("%d ",temp->value);
+
     }
 }
