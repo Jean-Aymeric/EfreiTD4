@@ -47,6 +47,7 @@ void displayNode(Node *node) {
 
 void displayTree(Tree tree) {
     displayNode(tree.root);
+    printf("\n");
 }
 
 int maxInNode(Node *node) {

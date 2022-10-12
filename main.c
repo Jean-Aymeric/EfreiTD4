@@ -1,23 +1,18 @@
 #include <stdio.h>
 #include "tree.h"
-#include "bufferNode.h"
+#include "BST.h"
+#include <time.h>
+#include <stdlib.h>
+
 
 int main() {
-    Tree *myTree = createTreeFromNode(createNode(1));
-
-    myTree->root->right = createNode(3);
-    myTree->root->left = createNode(2);
-
-    myTree->root->right->right = createNode(7);
-    myTree->root->right->left = createNode(6);
-
-    myTree->root->left->right = createNode(5);
-    myTree->root->left->left = createNode(4);
-
-    myTree->root->right->right->right = createNode(8);
-
-    displayTree(*myTree);
-    printf("cc\n");
-    displayHorizontallyTree(*myTree);
+    srand( time( NULL ) );
+   BST *bst=createTree();
+   for(int i=0;i<100;i++){
+       insertValueInBST(bst,rand()%8);
+   }
+    displayTree(*bst);
+    rotateLeft(bst,6);
+    displayTree(*bst);
     return 0;
 }
