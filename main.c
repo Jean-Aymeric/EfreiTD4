@@ -12,7 +12,7 @@ int main() {
        insertValueInBST(bst,rand()%8);
    }
     displayTree(*bst);
-    rotateLeft(bst,6);
+    rotateLeft(bst,bst->root->value);
     displayTree(*bst);
     return 0;
 }
